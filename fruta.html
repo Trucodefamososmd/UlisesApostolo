@@ -38,8 +38,9 @@
 
     #gameArea {
       position: relative;
-      width: 400px;
-      height: 600px;
+      width: 90%;
+      max-width: 320px;
+      height: 480px;
       background: rgba(0, 0, 0, 0.3);
       border: 2px solid #33ccff;
       border-radius: 20px;
@@ -53,17 +54,18 @@
       width: 60px;
       height: 60px;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.1s ease;
       user-select: none;
       filter: drop-shadow(1px 1px 2px #003366);
+      pointer-events: auto;
     }
 
     .fruit img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      pointer-events: none; /* Para que el click detecte solo el div */
       user-select: none;
+      pointer-events: none; /* para que el clic pase al div */
     }
 
     #score {
@@ -134,22 +136,19 @@
       const fruit = document.createElement('div');
       fruit.classList.add('fruit');
 
-      // Elegir imagen al azar
       const imgSrc = images[Math.floor(Math.random() * images.length)];
-
       const img = document.createElement('img');
       img.src = imgSrc;
       img.alt = "Personaje";
 
       fruit.appendChild(img);
-
       fruit.style.top = '-60px';
       fruit.style.left = `${Math.random() * (gameArea.offsetWidth - 60)}px`;
       gameArea.appendChild(fruit);
 
       let fruitTop = -60;
       const fallInterval = setInterval(() => {
-        fruitTop += 5;
+        fruitTop += 4;
         fruit.style.top = `${fruitTop}px`;
 
         if (fruitTop > gameArea.offsetHeight) {
@@ -159,18 +158,19 @@
             fruits = fruits.filter(f => f !== fruit);
           }
         }
-      }, 20);
+      }, 18);
 
       fruit.addEventListener('click', () => {
         score += 10;
         scoreDisplay.textContent = `Puntuación: ${score}`;
         fruit.style.transform = 'scale(0)';
+        clearInterval(fallInterval);
         setTimeout(() => {
           if (gameArea.contains(fruit)) {
             gameArea.removeChild(fruit);
             fruits = fruits.filter(f => f !== fruit);
           }
-        }, 200);
+        }, 100);
       });
 
       fruits.push(fruit);
