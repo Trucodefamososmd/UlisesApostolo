@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Generador de Chismes 📝</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@1,700&display=swap');
+
+    body {
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      background: radial-gradient(circle at top left, #B3E5FC, #03A9F4, #01579B);
+      background-size: 300% 300%;
+      animation: fondoCordobes 10s ease-in-out infinite;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    @keyframes fondoCordobes {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background-color: #ffffffcc;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+      backdrop-filter: blur(4px);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #01579B;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px #ccc;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #222;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      font-size: 1.2rem;
+      margin: 15px 0;
+      color: #111;
+    }
+
+    .section span {
+      font-weight: bold;
+      color: #444;
+    }
+
+    .chisme {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #222;
+      margin: 25px 0;
+      padding: 15px;
+      background-color: #f7f7f7;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      min-height: 60px;
+      display: none;
+    }
+
+    button {
+      padding: 15px 25px;
+      background-color: #03A9F4;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #0288D1;
+      transform: scale(1.05);
+    }
+
+    button:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>El Generador de Chismes 📝</h1>
+    <p>A Ulises le encanta el QUILOMBOOO, asi que ahora te toca a vos... ¡Genera un chisme aleatorio y divertido combinando nombres, lugares y acciones!</p>
+    
+    <div id="nombre" class="section">Vieron a: <span id="nombre-value">---</span></div>
+    <div id="lugar" class="section">En: <span id="lugar-value">---</span></div>
+    <div id="accion" class="section">Y estaban: <span id="accion-value">---</span></div>
+
+    <div class="chisme" id="chisme">¡Aquí aparecerá tu chisme!</div>
+    
+    <button onclick="generarChisme()">Generar Chisme</button>
+    <button onclick="volverInicio()">Volver al inicio</button>
+  </div>
+
+  <script>
+    const nombres = ["Ulises", "Chiara y Ulises", "Nano y Jennifer", "Renato", "Los causas", "El tridente", "Selva y Sandra", "Eugenia y Devi", "La tana", "Brian y Chiara", "Ulises y Tato", "Ulises y Selva", "Ulises y Nano", "Los powers", "Petrona"];
+    const lugares = ["en la playa", "en el restaurante", "en un bar", "en el estudio de televisión", "en una fiesta", "en el avión", "en el teatro", "en un cine", "en un museo", "en un hotel"];
+    const acciones = ["bailando", "cantando", "hablando con un desconocido", "haciendo un truco de magia", "haciendo QUILOMBOOOO", "tomando un cóctel", "sacándose fotos", "jugando al burako", "patinando", "tomando clases de inglés", "paseando en un auto lujoso", "montando un caballo", "jugando al minigolf"];
+
+    function generarChisme() {
+      document.getElementById("chisme").style.display = "none";
+
+      setTimeout(() => {
+        const nombre = nombres[Math.floor(Math.random() * nombres.length)];
+        document.getElementById('nombre-value').innerText = nombre;
+      }, 1000);
+
+      setTimeout(() => {
+        const lugar = lugares[Math.floor(Math.random() * lugares.length)];
+        document.getElementById('lugar-value').innerText = lugar;
+      }, 2000);
+
+      setTimeout(() => {
+        const accion = acciones[Math.floor(Math.random() * acciones.length)];
+        document.getElementById('accion-value').innerText = accion;
+      }, 3000);
+
+      setTimeout(() => {
+        const nombre = document.getElementById('nombre-value').innerText;
+        const lugar = document.getElementById('lugar-value').innerText;
+        const accion = document.getElementById('accion-value').innerText;
+        document.getElementById("chisme").innerText = `QUE QUILOMBOOOOO: Vimos a ${nombre} ${accion} ${lugar}. ¡Increíble!`;
+        document.getElementById("chisme").style.display = "block";
+      }, 3500);
+    }
+
+    function volverInicio() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>

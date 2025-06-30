@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crea tu meme de Ulises</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@1,700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Comic Neue', cursive, 'Comic Sans MS', cursive;
+      background: radial-gradient(circle at top left, #B3E5FC, #03A9F4, #01579B);
+      background-size: 300% 300%;
+      animation: fondoCordobes 10s ease-in-out infinite;
+      color: white;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    @keyframes fondoCordobes {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-family: 'Comic Neue', cursive;
+      font-size: 3.5em;
+      text-shadow: 3px 3px #003366;
+      margin-bottom: 10px;
+      letter-spacing: 3px;
+      color: #002244;
+    }
+
+    h3 {
+      font-weight: normal;
+      margin: 5px 0;
+      color: #004488;
+    }
+
+    #memeCanvas {
+      border: 3px solid #00ccff;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 119, 204, 0.7);
+      cursor: grab;
+      margin: 20px 0;
+      background-color: black;
+    }
+
+    #memeText {
+      margin-top: 15px;
+      padding: 10px;
+      font-size: 1.1em;
+      border-radius: 10px;
+      border: 2px solid #33ccff;
+      width: 80%;
+      max-width: 400px;
+      font-family: 'Comic Neue', cursive;
+      color: #003366;
+      background: #bbdefb;
+      font-weight: bold;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    #memeText:focus {
+      border-color: #00ffff;
+      background: #e1f5fe;
+    }
+
+    .boton {
+      background: linear-gradient(145deg, #00ccff, #005599);
+      border: 2px solid #33ccff;
+      color: white;
+      padding: 15px 35px;
+      margin: 15px;
+      font-size: 1.2em;
+      font-weight: bold;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px #003366;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .boton:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px #66d9ff;
+      background: linear-gradient(145deg, #66d9ff, #0077cc);
+    }
+  </style>
+</head>
+<body>
+  <h1>Crea tu meme de Ulises</h1>
+  <h3>Arrastrá el texto donde quieras</h3>
+  <h3>Cuando termines tu meme, ¡sacale captura!</h3>
+
+  <canvas id="memeCanvas" width="500" height="500"></canvas>
+  <br>
+  <input type="text" id="memeText" placeholder="Escribí tu meme acá">
+  <br>
+  <button class="boton" onclick="generateMeme()">Cambiar foto</button>
+  <br>
+  <a class="boton" href="index.html">Volver al inicio</a>
+
+  <script>
+    let images = [];
+    for (let i = 1; i <= 14; i++) {
+      let img = new Image();
+      img.src = `memes/${i}.png`;
+      images.push(img);
+    }
+
+    let canvas = document.getElementById("memeCanvas");
+    let ctx = canvas.getContext("2d");
+    let text = "";
+    let textX = 250;
+    let textY = 50;
+    let isDragging = false;
+    let selectedImage = new Image();
+
+    function drawMeme() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(selectedImage, 0, 0, canvas.width, canvas.height);
+      ctx.font = "30px 'Comic Neue', cursive, Arial";
+      ctx.fillStyle = "white";
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 4;
+      ctx.textAlign = "center";
+      ctx.strokeText(text, textX, textY);
+      ctx.fillText(text, textX, textY);
+    }
+
+    document.getElementById("memeText").addEventListener("input", function() {
+      text = this.value;
+      drawMeme();
+    });
+
+    canvas.addEventListener("mousedown", function(event) {
+      // Detect if clicked near the text to start dragging
+      let metrics = ctx.measureText(text);
+      let width = metrics.width;
+      let height = 30; // aprox alto de texto
+      if (
+        event.offsetX >= textX - width/2 &&
+        event.offsetX <= textX + width/2 &&
+        event.offsetY >= textY - height &&
+        event.offsetY <= textY
+      ) {
+        isDragging = true;
+        canvas.style.cursor = 'grabbing';
+      }
+    });
+
+    canvas.addEventListener("mousemove", function(event) {
+      if (isDragging) {
+        textX = event.offsetX;
+        textY = event.offsetY;
+        drawMeme();
+      }
+    });
+
+    canvas.addEventListener("mouseup", function() {
+      isDragging = false;
+      canvas.style.cursor = 'grab';
+    });
+
+    canvas.addEventListener("mouseleave", function() {
+      isDragging = false;
+      canvas.style.cursor = 'grab';
+    });
+
+    function generateMeme() {
+      let randomIndex = Math.floor(Math.random() * images.length);
+      selectedImage = new Image();
+      selectedImage.src = images[randomIndex].src;
+      selectedImage.onload = function() {
+        drawMeme();
+      };
+    }
+
+    window.onload = function() {
+      generateMeme();
+    };
+  </script>
+</body>
+</html>

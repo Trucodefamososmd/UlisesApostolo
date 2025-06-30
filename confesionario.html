@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Confesionario - Ulises Apostolo</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@1,700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      background: radial-gradient(circle at top left, #B3E5FC, #03A9F4, #01579B);
+      background-size: 300% 300%;
+      animation: fondoCordobes 10s ease-in-out infinite;
+      color: white;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    @keyframes fondoCordobes {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 4em;
+      text-shadow: 3px 3px #000;
+      margin-bottom: 40px;
+      letter-spacing: 4px;
+    }
+
+    iframe {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+      width: 100%;
+      max-width: 700px;
+      height: 900px;
+      background: white;
+    }
+
+    /* Botón volver */
+    .boton {
+      background: linear-gradient(145deg, #00ccff, #003366);
+      border: 2px solid #00ffff;
+      color: white;
+      padding: 15px 35px;
+      margin: 30px 10px 10px 10px;
+      font-size: 1.3em;
+      font-weight: bold;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px #000;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+
+    .boton:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px #00ffff;
+      background: linear-gradient(145deg, #33eaff, #005599);
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #bbdefb;
+      text-shadow: 1px 1px 3px #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Confesionario</h1>
+
+  <iframe 
+    src="https://forms.gle/rhWEYBtb5aNBhv499" 
+    allowfullscreen 
+    loading="lazy"
+    title="Formulario Confesionario Ulises Apostolo"
+  >
+    Cargando…
+  </iframe>
+
+  <p>Tu confesión será anónima y privada.</p>
+
+  <a href="index.html" class="boton">← Volver al inicio</a>
+
+</body>
+</html>

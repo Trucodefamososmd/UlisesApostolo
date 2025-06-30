@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verdadero o Falso - Ulises</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@1,700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Comic Neue', cursive, 'Comic Sans MS', cursive;
+      background: radial-gradient(circle at top left, #B3E5FC, #03A9F4, #01579B);
+      background-size: 300% 300%;
+      animation: fondoCordobes 10s ease-in-out infinite;
+      color: white;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    @keyframes fondoCordobes {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 3.5em;
+      margin-bottom: 30px;
+      letter-spacing: 4px;
+      color: #002244;
+      text-shadow: 2px 2px 6px #001122;
+    }
+
+    #questionBox {
+      background: rgba(0,0,0,0.3);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #004080;
+      max-width: 600px;
+      width: 100%;
+      min-height: 200px;
+    }
+
+    #question {
+      font-size: 1.5em;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      background: linear-gradient(145deg, #00ccff, #003366);
+      border: 2px solid #33ccff;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1.1em;
+      font-weight: 700;
+      border-radius: 25px;
+      box-shadow: 0 6px 18px #0077cc;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px #00ccff;
+    }
+
+    #feedback {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-top: 15px;
+      min-height: 30px;
+    }
+
+    #finalScore {
+      margin-top: 30px;
+      font-size: 2em;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 10px #000;
+    }
+
+    a {
+      margin-top: 30px;
+      display: inline-block;
+      background: linear-gradient(145deg, #00ccff, #003366);
+      border: 2px solid #33ccff;
+      color: white;
+      padding: 14px 40px;
+      font-size: 1.2em;
+      font-weight: 700;
+      border-radius: 25px;
+      box-shadow: 0 6px 18px #0077cc;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px #00ccff;
+    }
+  </style>
+</head>
+<body>
+  <h1>¿Verdadero o Falso?</h1>
+  <div id="questionBox">
+    <div id="question"></div>
+    <div id="buttonsContainer">
+      <button class="btn" onclick="answer('V')">Verdadero</button>
+      <button class="btn" onclick="answer('F')" id="falseBtn">Falso</button>
+    </div>
+    <div id="feedback"></div>
+  </div>
+  <div id="finalScore" style="display:none;"></div>
+  <a href="index.html" id="homeButton">Volver al inicio</a>
+
+  <script>
+    const questions = [
+      { text: "Ulises fulmino a alguien del tridente", answer: "F" },
+      { text: "Ulises se ganó un auto", answer: "V" },
+      { text: "Ulises nunca fue fulminado", answer: "V" },
+      { text: "Gran hermano nunca retó a Ulises por nombrar famosos", answer: "F" },
+      { text: "Ulises hizo que Gabi no gane una moto por soplarle las respuestas", answer: "V" },
+      { text: "Ulises formó parte de una alianza llamada “Los originales”", answer: "F" },
+      { text: "Ulises entró justo después que Chiara a GH", answer: "V" },
+      { text: "Cuando entró Chiara a acompañar, jugó con Ulises", answer: "F" },
+      { text: "Fue el único participante que más pruebas de líder ganó", answer: "F" },
+      { text: "Ulises dio SHOW", answer: "V", final: true }
+    ];
+
+    let current = 0;
+    let correct = 0;
+
+    const questionEl = document.getElementById("question");
+    const scoreEl = document.getElementById("finalScore");
+    const questionBox = document.getElementById("questionBox");
+    const homeButton = document.getElementById("homeButton");
+    const feedbackEl = document.getElementById("feedback");
+    const falseBtn = document.getElementById("falseBtn");
+
+    function showQuestion() {
+      questionEl.textContent = questions[current].text;
+      feedbackEl.textContent = "";
+      if (questions[current].final) {
+        falseBtn.style.display = "none";
+      } else {
+        falseBtn.style.display = "inline-block";
+      }
+    }
+
+    function answer(response) {
+      const isCorrect = questions[current].answer === response;
+      if (isCorrect) {
+        correct++;
+        feedbackEl.textContent = "¡Correcto!";
+        feedbackEl.style.color = "#00ffcc";
+      } else {
+        feedbackEl.textContent = "¡Incorrecto!";
+        feedbackEl.style.color = "#ff8080";
+      }
+      current++;
+      setTimeout(() => {
+        if (current < questions.length) {
+          showQuestion();
+        } else {
+          endGame();
+        }
+      }, 1000);
+    }
+
+    function endGame() {
+      questionBox.style.display = "none";
+      scoreEl.style.display = "block";
+      scoreEl.textContent = `Respondiste correctamente ${correct} de ${questions.length}`;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>

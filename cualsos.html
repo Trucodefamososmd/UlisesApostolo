@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>¿Qué Ulises sos?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@1,700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Comic Neue', cursive, 'Comic Sans MS', cursive;
+      background: radial-gradient(circle at top left, #B3E5FC, #03A9F4, #01579B);
+      background-size: 300% 300%;
+      animation: fondoCordobes 10s ease-in-out infinite;
+      color: white;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    @keyframes fondoCordobes {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 3.5em;
+      margin-bottom: 30px;
+      letter-spacing: 4px;
+      color: #002244;
+      text-shadow: 2px 2px 6px #001122;
+    }
+
+    #questionContainer {
+      max-width: 600px;
+      width: 100%;
+      background: rgba(0,0,0,0.3);
+      padding: 30px 35px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #004080;
+      user-select: none;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #questionText {
+      font-weight: 700;
+      font-size: 1.3em;
+      margin-bottom: 25px;
+      color: #ccf5ff;
+      text-align: left;
+    }
+
+    .option-btn {
+      background: linear-gradient(145deg, #00ccff, #003366);
+      border: 2px solid #33ccff;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1.1em;
+      font-weight: 700;
+      border-radius: 25px;
+      box-shadow: 0 6px 18px #0077cc;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s, background-color 0.25s;
+      font-family: 'Comic Neue', cursive;
+      margin: 10px 0;
+      text-align: left;
+      user-select: none;
+    }
+
+    .option-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px #00ccff;
+      background: linear-gradient(145deg, #33d6ff, #006699);
+      color: #e0f7ff;
+    }
+
+    #result {
+      margin-top: 40px;
+      font-size: 2.2em;
+      font-weight: 800;
+      color: #000000;
+      text-shadow: 0 0 10px #000000;
+    }
+
+    #description {
+      margin-top: 15px;
+      font-size: 1.3em;
+      max-width: 600px;
+      color: #000000;
+    }
+
+    a {
+      margin-top: 50px;
+      display: inline-block;
+      background: linear-gradient(145deg, #00ccff, #003366);
+      border: 2px solid #33ccff;
+      color: white;
+      padding: 14px 40px;
+      font-size: 1.2em;
+      font-weight: 700;
+      border-radius: 25px;
+      box-shadow: 0 6px 18px #0077cc;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+      user-select: none;
+    }
+
+    a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px #00ccff;
+      background: linear-gradient(145deg, #33d6ff, #006699);
+      color: #e0f7ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>¿Qué Ulises sos?</h1>
+
+  <div id="questionContainer">
+    <div id="questionText"></div>
+    <div id="optionsContainer"></div>
+  </div>
+
+  <div id="result" style="display:none;"></div>
+  <div id="description" style="display:none;"></div>
+
+  <a href="index.html">Volver al inicio</a>
+
+  <script>
+    const questions = [
+      {
+        text: "1. ¿Cómo prefieres pasar tu tiempo libre?",
+        options: [
+          { text: "Planificando proyectos y metas", value: "estratega" },
+          { text: "Haciendo reír a mis amigos", value: "divertido" },
+          { text: "Escuchando música o reflexionando", value: "sensible" },
+          { text: "Organizando actividades grupales", value: "lider" }
+        ]
+      },
+      {
+        text: "2. ¿Cuál es tu mayor fortaleza?",
+        options: [
+          { text: "Analizar situaciones antes de actuar", value: "estratega" },
+          { text: "Alegrar el ambiente con humor", value: "divertido" },
+          { text: "Empatía y comprensión", value: "sensible" },
+          { text: "Tomar la iniciativa y guiar al grupo", value: "lider" }
+        ]
+      },
+      {
+        text: "3. ¿Qué prefieres en un grupo?",
+        options: [
+          { text: "Tener un plan claro", value: "estratega" },
+          { text: "Risas y buen humor", value: "divertido" },
+          { text: "Apoyo emocional", value: "sensible" },
+          { text: "Que alguien tome el mando", value: "lider" }
+        ]
+      },
+      {
+        text: "4. ¿Cómo reaccionás ante un problema?",
+        options: [
+          { text: "Evaluando todas las opciones", value: "estratega" },
+          { text: "Buscando distraer con chistes", value: "divertido" },
+          { text: "Reflexionando y buscando apoyo", value: "sensible" },
+          { text: "Actuando rápido y con decisión", value: "lider" }
+        ]
+      },
+      {
+        text: "5. ¿Qué te define mejor?",
+        options: [
+          { text: "Paciente y metódico", value: "estratega" },
+          { text: "Divertido y sociable", value: "divertido" },
+          { text: "Intuitivo y emocional", value: "sensible" },
+          { text: "Responsable y decidido", value: "lider" }
+        ]
+      },
+      {
+        text: "6. ¿Qué rol te gusta tomar en un equipo?",
+        options: [
+          { text: "El planificador", value: "estratega" },
+          { text: "El alma de la fiesta", value: "divertido" },
+          { text: "El apoyo emocional", value: "sensible" },
+          { text: "El líder", value: "lider" }
+        ]
+      },
+      {
+        text: "7. ¿Cómo te describen tus amigos?",
+        options: [
+          { text: "Inteligente y calculador", value: "estratega" },
+          { text: "Gracioso y espontáneo", value: "divertido" },
+          { text: "Cariñoso y atento", value: "sensible" },
+          { text: "Decidido y valiente", value: "lider" }
+        ]
+      },
+      {
+        text: "8. ¿Qué preferís hacer en una salida con amigos?",
+        options: [
+          { text: "Planear actividades", value: "estratega" },
+          { text: "Contar chistes y bromas", value: "divertido" },
+          { text: "Conversar de temas profundos", value: "sensible" },
+          { text: "Organizar al grupo", value: "lider" }
+        ]
+      },
+      {
+        text: "9. ¿Cómo te sentís cuando tenés que hablar en público?",
+        options: [
+          { text: "Preparado y confiado", value: "estratega" },
+          { text: "Trato de hacerlo divertido", value: "divertido" },
+          { text: "Nervioso pero auténtico", value: "sensible" },
+          { text: "Listo para liderar", value: "lider" }
+        ]
+      },
+      {
+        text: "10. ¿Qué es lo que más valorás en tus amigos?",
+        options: [
+          { text: "Lealtad y compromiso", value: "estratega" },
+          { text: "Alegría y buen humor", value: "divertido" },
+          { text: "Empatía y sinceridad", value: "sensible" },
+          { text: "Apoyo y liderazgo", value: "lider" }
+        ]
+      }
+    ];
+
+    const descriptions = {
+      estratega: {
+        title: "Ulises Estratega",
+        desc: "Eres calculador, paciente y siempre planeás tus movimientos para lograr tus objetivos. Te gusta analizar antes de actuar y tenés una mente brillante para la estrategia."
+      },
+      divertido: {
+        title: "Ulises Divertido",
+        desc: "Sos el alma de la fiesta, siempre hacés reír a los demás y aportás alegría donde vas. Tu carisma y espontaneidad te hacen único."
+      },
+      sensible: {
+        title: "Ulises Sensible",
+        desc: "Tenés un gran corazón, sos empático y atento a los sentimientos de los demás. Reflexionás profundo y valorás la conexión emocional."
+      },
+      lider: {
+        title: "Ulises Líder",
+        desc: "Tomás la iniciativa, organizás al grupo y te destacás por tu responsabilidad y capacidad para guiar a otros con decisión."
+      }
+    };
+
+    let currentQuestion = 0;
+    let scores = { estratega: 0, divertido: 0, sensible: 0, lider: 0 };
+
+    const questionText = document.getElementById('questionText');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const resultDiv = document.getElementById('result');
+    const descriptionDiv = document.getElementById('description');
+    const questionContainer = document.getElementById('questionContainer');
+
+    function showQuestion() {
+      // Limpiar opciones anteriores
+      optionsContainer.innerHTML = "";
+
+      // Mostrar pregunta
+      questionText.textContent = questions[currentQuestion].text;
+
+      // Crear botones para opciones
+      questions[currentQuestion].options.forEach(option => {
+        const btn = document.createElement('button');
+        btn.className = "option-btn";
+        btn.textContent = option.text;
+        btn.onclick = () => selectOption(option.value);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function selectOption(value) {
+      scores[value]++;
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        mostrarResultado();
+      }
+    }
+
+    function mostrarResultado() {
+      questionContainer.style.display = "none";
+      // Determinar mayor puntaje
+      let maxScore = 0;
+      let winner = "";
+      for (const key in scores) {
+        if (scores[key] > maxScore) {
+          maxScore = scores[key];
+          winner = key;
+        }
+      }
+      resultDiv.style.display = "block";
+      descriptionDiv.style.display = "block";
+      resultDiv.textContent = descriptions[winner].title;
+      descriptionDiv.textContent = descriptions[winner].desc;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>

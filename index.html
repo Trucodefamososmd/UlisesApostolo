@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ulises Apostolo</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@1,700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      background: radial-gradient(circle at top left, #B3E5FC, #03A9F4, #01579B);
+      background-size: 300% 300%;
+      animation: fondoCordobes 10s ease-in-out infinite;
+      color: white;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    @keyframes fondoCordobes {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 4em;
+      text-shadow: 3px 3px #000;
+      margin-bottom: 50px;
+      letter-spacing: 4px;
+    }
+
+    .boton {
+      background: linear-gradient(145deg, #00ccff, #003366);
+      border: 2px solid #00ffff;
+      color: white;
+      padding: 15px 35px;
+      margin: 10px;
+      font-size: 1.3em;
+      font-weight: bold;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px #000;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .boton:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px #00ffff;
+      background: linear-gradient(145deg, #33eaff, #005599);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .boton-final {
+      margin-top: 40px;
+    }
+
+    /* Emojis flotando */
+    .emoji {
+      position: absolute;
+      font-size: 2.3em;
+      animation: flotar 12s linear infinite;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+
+    .emoji1 { left: 5%; animation-delay: 0s; }
+    .emoji2 { left: 15%; animation-delay: 3s; }
+    .emoji3 { left: 25%; animation-delay: 6s; }
+    .emoji4 { left: 35%; animation-delay: 1.5s; }
+    .emoji5 { left: 45%; animation-delay: 4.5s; }
+    .emoji6 { left: 55%; animation-delay: 2s; }
+    .emoji7 { left: 65%; animation-delay: 5s; }
+    .emoji8 { left: 75%; animation-delay: 1s; }
+    .emoji9 { left: 85%; animation-delay: 3.5s; }
+    .emoji10 { left: 92%; animation-delay: 6.5s; }
+  </style>
+</head>
+<body>
+
+  <h1>Ulises Apostolo</h1>
+
+  <a href="bio.html"><button class="boton">Biografía</button></a>
+  <a href="vof.html"><button class="boton">Verdadero o Falso</button></a>
+  <a href="chisme.html"><button class="boton">A hacer QUILOMBOOOO</button></a>
+  <a href="tateti.html"><button class="boton">Ta Te Ti de los causas</button></a>
+  <a href="moda.html"><button class="boton">La moda de Ulises</button></a>
+  <a href="meme.html"><button class="boton">Crea tu meme</button></a>
+  <a href="cualsos.html"><button class="boton">¿Qué Ulises sos?</button></a>
+  <a href="fruta.html"><button class="boton">Causa ninja</button></a>
+  <a href="confesionario.html"><button class="boton">Al confesionario</button></a>
+  <a href="redes.html"><button class="boton">Redes Sociales</button></a>
+
+  <button class="boton boton-final" onclick="document.getElementById('cobraAudio').play()">🎵 Reproducir sorpresa</button>
+
+  <audio id="cobraAudio" src="cordoba.mp4"></audio>
+
+  <!-- Emojis volando -->
+  <div class="emoji emoji1">🧉</div>
+  <div class="emoji emoji2">😂</div>
+  <div class="emoji emoji3">🍾</div>
+  <div class="emoji emoji4">🎈</div>
+  <div class="emoji emoji5">🎉</div>
+  <div class="emoji emoji6">🎸</div>
+  <div class="emoji emoji7">🧉</div>
+  <div class="emoji emoji8">🍻</div>
+  <div class="emoji emoji9">🎶</div>
+  <div class="emoji emoji10">😂</div>
+
+</body>
+</html>

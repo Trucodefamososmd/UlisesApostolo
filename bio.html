@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biografía de Ulises 🧉</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@1,700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      background: radial-gradient(circle at top left, #B3E5FC, #03A9F4, #01579B);
+      background-size: 300% 300%;
+      animation: fondoCordobes 10s ease-in-out infinite;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    @keyframes fondoCordobes {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .bio-container {
+      background-color: #ffffffcc;
+      backdrop-filter: blur(6px);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 800px;
+      color: #222;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #01579B;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 25px;
+      color: #0288D1;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .boton {
+      padding: 12px 20px;
+      background-color: #03A9F4;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+    }
+
+    .boton:hover {
+      background-color: #0288D1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bio-container">
+    <h1>Ulises Apóstolo</h1>
+    <h2>Subcampeón de Gran Hermano Argentina 2024-2025</h2>
+    
+    <p>
+      Ulises Apóstolo es un joven argentino que alcanzó la fama nacional tras participar en la edición 2024-2025 de Gran Hermano Argentina, donde se consagró como subcampeón. Originario de Córdoba, Ulises se destacó por su autenticidad, carisma y capacidad para mantenerse fiel a sí mismo en un entorno de alta presión, lo que le ganó el cariño de una gran parte del público.
+    </p>
+    
+    <p>
+      A lo largo del reality, Ulises fue construyendo una imagen de jugador frontal pero sensible, con momentos de humor, estrategia y también vulnerabilidad. Su vínculo con otros participantes, sus conflictos y su crecimiento personal dentro de la casa lo convirtieron en uno de los personajes más comentados de la edición.
+    </p>
+
+    <p>
+      El domingo de la gran final, Ulises quedó en segundo lugar detrás del ganador, en un cierre muy reñido que movilizó a miles de fanáticos en redes sociales. Tras su salida, recibió el reconocimiento de figuras del espectáculo y fue invitado a múltiples programas, donde demostró su simpatía y espontaneidad.
+    </p>
+
+    <p>
+      Desde su paso por Gran Hermano, Ulises ha comenzado a construir una carrera en los medios, explorando oportunidades como influencer, panelista e incluso como conductor invitado. Con una gran base de seguidores y una imagen positiva, muchos lo ven como una figura prometedora del nuevo entretenimiento argentino.
+    </p>
+
+    <button class="boton" onclick="volverInicio()">Volver al inicio</button>
+  </div>
+
+  <script>
+    function volverInicio() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
